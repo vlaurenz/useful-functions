@@ -16,6 +16,7 @@
 		 AmEx
 		 Diners
 
+	-Vinny Laurenzano		
 ***************************************************************************/
 function validate(selector){
 		
