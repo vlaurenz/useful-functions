@@ -1,13 +1,14 @@
+
 /***********************************************************
 	This functiong getTwit() get's the last twit of the
 	designated user. To get more than one twit replace
-	count=1 in api call with desired amount. Currently it
-	will diplay one url in the link correctly, it would have
-	to be modified to display more than one.
+	count=1 in api call with desired amount. Requires Jquery.
 	
 	-Vinny Laurenzano
 
 /***********************************************************/
+
+
 function getTwit()
 {	
 	var twitterName = "mlcvb";
@@ -18,11 +19,14 @@ function getTwit()
 		
 		console.log(tweet);
 		
-		startIndex = tweet[0].entities.urls[0].indices[0];
+		tweetText = tweet[0].text;
 		
-		link = '<a href=' + tweet[0].entities.urls[0].expanded_url + ' target="_blank" >' + tweet[0].entities.urls[0].display_url + '</a>';
-		
-		
-		$("#twitter_feed").html(tweet[0].text.substring(0, startIndex) + link); 
+		for(i = 0; i <  tweet[0].entities.urls.length; i++)
+		{
+			console.log(tweet[0].entities.urls[i].url);
+			tweetText = tweetText.replace(tweet[0].entities.urls[i].url, '<a href=' + tweet[0].entities.urls[i].url + ' target="_blank" >'  + tweet[0].entities.urls[i].url + '</a>');
+		}
+				
+		$("#twitter_feed").html(tweetText); 
 	});
 }
